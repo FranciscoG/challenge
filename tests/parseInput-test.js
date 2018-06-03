@@ -22,6 +22,9 @@ describe('pizzabot input tests', function() {
 
     badFn = ()=>{ parseInput(undefined); }
     expect( badFn ).to.throw(TypeError);
+
+    badFn = ()=>{ parseInput(""); }
+    expect( badFn ).to.not.throw(TypeError);
   });
 
   it('it should throw an error if input contains invalid characters', function(){
