@@ -1,39 +1,42 @@
-# Coding Challenge
+# Pizzabot Coding Challenge
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+## Prerequisites
 
-### Prerequisites
+Requires [Node](https://nodejs.org/) 6+ to be installed on your computer.
 
-Requires [Node](https://nodejs.org/) to be installed on your computer.
+## Setup
 
-### Installing
-
-Install project dependencies by running the following command:
+Install project dependencies by running the following command from the project root:
 
 ```
 npm install
 ```
 
+
 ## Running the project
 
-- command line
+from the command line you can do one of the following 2 things:
 
-- GUI
+1. pass pizzabot's data directly to the program as a cli argument
+    - note: that it only takes 1 argument that must be surrounded by quotes, like in the example
+```bash
+./pizzabot "5x5 (2,3) (5,5)"
+```
+
+2. run the program without arguments and it till prompt you for the data
+```bash
+./pizzabot
+```
+
+Notice that you do not need to invoke `node` before the program to run it. The file is chmodded to be executable and includes a hash-bang which tells the terminal what program to run it with.
+
 
 ## Running the tests
 
-Testing is handled by Mocha and Chai. To run automated tests just run the following command:
+Unit testing is handled by Mocha. To run automated tests just run the following command:
 
 ```
 npm test
-```
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
 ```
