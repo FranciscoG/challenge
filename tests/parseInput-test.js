@@ -26,19 +26,19 @@ describe('pizzabot input tests', function() {
 
   it('it should throw an error if input contains invalid characters', function(){
     let badFn = ()=>{ parseInput("5x5 & (0,1)"); }
-    expect( badFn ).to.throw();
+    expect( badFn ).to.throw(Error);
 
     badFn = ()=>{ parseInput("pizza 5x5 (0,1) "); }
-    expect( badFn ).to.throw();
+    expect( badFn ).to.throw(Error);
 
     badFn = ()=>{ parseInput("#$^W%^%^UEYJET "); }
-    expect( badFn ).to.throw();
+    expect( badFn ).to.throw(Error);
 
     badFn = ()=>{ parseInput(" 60x60 (0,p) (5,%) "); }
-    expect( badFn ).to.throw();
+    expect( badFn ).to.throw(Error);
 
     badFn = ()=>{ parseInput(" 5X5 (0,1) "); }
-    expect( badFn ).to.throw();
+    expect( badFn ).to.throw(Error);
 
   });
 
@@ -68,17 +68,28 @@ describe('pizzabot input tests', function() {
   it('rertuned.grid should be an array with length of 2 and only numbers', function(){
     let result = parseInput("5x5 (0, 0) (1, 3) (4,4)(4, 2) (4, 2) (0, 1) (3, 2) (2, 3) (4,1) ");
     expect(result.grid).to.be.an('array');
+    // need to check length first because Array.every returns true on empty arrays
     expect(result.grid.length).to.eq(2);
-    expect(result.grid[0]).to.be.a('number');
-    expect(result.grid[1]).to.be.a('number');
+    expect(result.grid).to.satisfy(function(nums) { 
+      return nums.every( n => typeof n === 'number' ); 
+    });
   }); 
 
-  // it('rertuned.coords should be an array of coordinate arrays', function(){
+  it('rertuned.coords should be an array of coordinate arrays', function(){
+    let result = parseInput("5x5 (0, 0) (1, 3) (4,4)");
+    expect(result.coords).to.be.an('array');
+    // need to check length first because Array.every returns true on empty arrays
+    expect(result.coords.length).to.be.greaterThan(0);
+    expect(result.coords).to.satisfy(function(coords) { 
+      return coords.every( arr => Array.isArray(arr) ); 
+    });
+  });
 
-  // });
-
-  // it('each coordinate array should be of length 2 and only contain numbers', function(){
-
-  // });
+  it('each coordinate array should be of length 2 and only contain numbers', function(){
+    let result = parseInput("5x5 (0, 0) (1, 3) (4,4)");
+    expect(result.coords).to.satisfy(function(coords) { 
+      return coords.every( arr => arr.length === 2 && arr.every( n => typeof n === 'number' ) ); 
+    });
+  });
 
 });
