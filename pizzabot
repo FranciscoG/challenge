@@ -2,28 +2,32 @@
 'use strict';
 const parseInput = require('./lib/parseInput.js');
 const findPath = require('./lib/findPath.js');
+const ask = require('./lib/ask-for-input.js');
 
-// read input args
-let input = process.argv[2];
-
-/**
- * Show some instructions if the user did not include the proper argument 
- */
-if (!input) {
-  let instructions = `
-    Example Usage: 
-      ./pizzabot.js "5x5 (1,3) (5,5) (3,2)"
-
-    Pizzabot only accepts one argument in the form of a string surrounded
-    by quotation marks. The argument will consist of a grid declaration followed
-    by coordinates within parenthesis, like in the example above.
-`;
-  console.log(instructions);
+function pizzabot(input) {
+  let parsed = parseInput(input);
+  let path = findPath(parsed);
+  process.stdout.write(path + '\n');
   process.exit(0);
 }
 
+/*
+ * If data was passed as an argument via the command line we can
+ * handle it directly
+ */
+let input = process.argv[2];
+if (input) {
+  pizzabot(input);
+}
 
-let parsed = parseInput(input);
-let path = findPath(parsed);
-
-process.stdout.write(path);
+/*
+ * If user only typed `./pizzabot` without passing arguments
+ * then we can prompt the user and get data via stdin
+ */
+ask("Please enter pizzabot's delivery data:")
+  .then(function(line){
+    pizzabot(line);
+  })
+  .catch(function(err){
+    console.error(err);
+  });

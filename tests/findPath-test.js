@@ -5,13 +5,13 @@ const findPath = require( '../lib/findPath.js' );
 
 describe('pizzabot findPath tests', function() {
 
-  it('should throw out of bonds error of coordinates lead outside of grid', function(){
+  it('should throw coordinates out of bonds error if a number is outside of grid', function(){
     let data;
 
     data  = parseInput("60x60 (60, 3) (4, 4)");
     expect( findPath.bind(findPath, data) ).to.throw(Error);
     
-    data  = parseInput("60x60 (33, 28) (70, 4)");expect( findPath.bind(findPath, data) ).to.throw(Error);
+    data  = parseInput("60x60 (33, 28) (10, 70)");
     expect( findPath.bind(findPath, data) ).to.throw(Error);
   });
 

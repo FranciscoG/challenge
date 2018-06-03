@@ -76,6 +76,14 @@ describe('pizzabot input tests', function() {
     expect(result.grid).to.satisfy(function(nums) { 
       return nums.every( n => typeof n === 'number' ); 
     });
+
+    let result2 = parseInput("400x400 (233, 311) (50, 30) (300,4) (160, 2)(399,399)");
+    expect(result2.grid).to.be.an('array');
+    // need to check length first because Array.every returns true on empty arrays
+    expect(result2.grid.length).to.eq(2);
+    expect(result2.grid).to.satisfy(function(nums) { 
+      return nums.every( n => typeof n === 'number' ); 
+    });
   }); 
 
   it('rertuned.coords should be an array of coordinate arrays', function(){
@@ -86,10 +94,19 @@ describe('pizzabot input tests', function() {
     expect(result.coords).to.satisfy(function(coords) { 
       return coords.every( arr => Array.isArray(arr) ); 
     });
+
+    let result2 = parseInput("9000x9000 (5637, 1023) (8888, 44)");
+    expect(result2.coords).to.be.an('array');
+    // need to check length first because Array.every returns true on empty arrays
+    expect(result2.coords.length).to.be.greaterThan(0);
+    expect(result2.coords).to.satisfy(function(coords) { 
+      return coords.every( arr => Array.isArray(arr) ); 
+    });
   });
 
   it('each coordinate array should be of length 2 and only contain numbers', function(){
     let result = parseInput("5x5 (0, 0) (1, 3) (4,4)");
+    expect(result.coords.length).to.eq(3);
     expect(result.coords).to.satisfy(function(coords) { 
       return coords.every( arr => arr.length === 2 && arr.every( n => typeof n === 'number' ) ); 
     });
