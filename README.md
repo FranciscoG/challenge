@@ -10,7 +10,7 @@ Requires [Node](https://nodejs.org/) 6+ to be installed on your computer.
 
 Install project dependencies by running the following command from the project root:
 
-```
+```bash
 npm install
 ```
 
@@ -25,7 +25,7 @@ from the command line you can do one of the following 2 things:
 ./pizzabot "5x5 (2,3) (5,5)"
 ```
 
-2. run the program without arguments and it till prompt you for the data
+2. run the program without arguments and it will prompt you for the data
 ```bash
 ./pizzabot
 ```
@@ -39,6 +39,6 @@ Notice that you do not need to invoke `node` before the program to run it. The f
 
 Unit testing is handled by Mocha. To run automated tests just run the following command:
 
-```
+```bash
 npm test
 ```
