@@ -30,6 +30,8 @@ from the command line you can do one of the following 2 things:
 ./pizzabot
 ```
 
+**Results will always end in a newline**
+
 Notice that you do not need to invoke `node` before the program to run it. The file is chmodded to be executable and includes a hash-bang which tells the terminal what program to run it with.
 
 
