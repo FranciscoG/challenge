@@ -27,8 +27,14 @@ Nice to haves (things that we look for):
 
 At a high level the navigation will have two main states:
 
-* <768px: Mobile. Hamburger icon will display in the top-left of the page. Clicking the hamburger will cause a card to push in and move the main content to the right. The card will contain nav and sub-nav items defined in the JSONP response.
-* \>= 768px: Desktop. The nav will display as a horizontal nav. Top level nav items will display sub-nav items when clicked. No hamburger will be shown.
+## <768px: Mobile 
+* Hamburger icon will display in the top-left of the page. 
+* Clicking the hamburger will cause a card to push in and move the main content to the right. 
+* The card will contain nav and sub-nav items defined in the JSONP response.
+
+## \>= 768px: Desktop
+*  The nav will display as a horizontal nav. 
+*  Top level nav items will display sub-nav items when clicked. No hamburger will be shown.
 
 ## Version
 0.1.0
