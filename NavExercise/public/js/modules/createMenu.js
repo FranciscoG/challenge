@@ -52,6 +52,7 @@ export function createUL(menuClass, items, isTop=false){
     li.appendChild(link);
 
     if (el.items && el.items.length > 0) {
+      li.classList.add('nav__has-sub');
       var submenu = createUL("nav__sub-menu", el.items, false);
       li.appendChild(submenu);
     }

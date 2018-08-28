@@ -1,8 +1,13 @@
 @import "fonts.css";
 
+:root {
+  --huge-magenta: #ec008c;
+}
+
 body {
-  background: #ec008c;
+  background: var(--huge-magenta);
   color: #fff;
+  margin: 0;
 }
 
 h1 {
@@ -17,8 +22,70 @@ h1 {
   text-align: center;
 }
 
+nav {
+  padding: 0;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.logo {
+  width: 60px;
+  margin: 0;
+  padding-top: 24px;
+  padding-left: 24px;
+  float: left;
+}
+.logo img {
+  display: block;
+  width: 100%;
+}
 .nav__menu {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+
+  float: left;
+  font-family: 'HUGEAvantGardeBold', sans-serif;
+}
+
+.nav__item {
+  height: 100%;
+  position: relative;
+}
+
+.nav__link {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  height: 100%;
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  cursor: pointer;
+  font-size: 22px;
+}
+
+.nav__link:hover {
+  color: var(--huge-magenta);
+  background-color: #fff;
+}
+
+.nav__sub-menu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 300ms linear;
+}
+
+.nav__open.nav__sub-menu {
+  max-height: initial;
+}
+
+.nav__sub-menu .nav__link {
+  font-family: 'Galaxie', serif;
+  font-size: 0.95em;
 }
