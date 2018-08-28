@@ -27,8 +27,8 @@ export function createLi(){
 }
 
 /**
- * Goes through of an array of menu items and generates the DOM for a menu
- * If a menu item has sub-menu items, it will build recursively.  
+ * Goes through an array of menu items and generates the DOM Tree for a menu
+ * If it has sub-menu items, it will build recursively.
  *
  * @export
  * @param {*} menuClass the css class of the UL
