@@ -4,13 +4,16 @@
  * @export
  * @param {string} label the text of the link
  * @param {string} url the href of the link
- * @returns <a> DOM element
+ * @returns HTMLAnchorElement
  */
-export function createAnchor(label, url) {
+export function createAnchor(label, url, hasSub=false) {
   let a = document.createElement('a');
   a.href = url;
   a.textContent = label;
   a.classList.add("nav__link");
+  if (hasSub) {
+    a.setAttribute('aria-haspopup','true');
+  }
   return a;
 }
 
@@ -18,7 +21,7 @@ export function createAnchor(label, url) {
  * Creates a single list-item DOM element
  *
  * @export
- * @returns <li> DOM Element
+ * @returns HTMLLIElement
  */
 export function createLi(){
   let li = document.createElement('li');
@@ -33,25 +36,31 @@ export function createLi(){
  * @export
  * @param {*} menuClass the css class of the UL
  * @param {*} items array of objects with menu data
- * @param {boolean} [isTop=false] whether this ul is top level or now
- * @returns <ul> DOM element with children
+ * @param {boolean} [isTop=false] whether this <ul> is top level or now
+ * @returns HTMLUListElement with children
  */
 export function createUL(menuClass, items, isTop=false){
   // start with top level memu
   let ul = document.createElement('ul');
   ul.className = menuClass;
 
+  if (!isTop) {
+    ul.setAttribute('aria-label','submenu');
+    ul.setAttribute('aria-hidden','true');
+  }
+
   items.forEach(el => {
     let li = createLi();
+    let hasItems = el.items && el.items.length > 0;
+
     if (isTop) {
-      li.setAttribute('aria-expanded', 'false');
       li.classList.add('nav__top-level');
     }
 
-    let link = createAnchor(el.label, el.url);
+    let link = createAnchor(el.label, el.url, hasItems);
     li.appendChild(link);
-
-    if (el.items && el.items.length > 0) {
+    
+    if (hasItems) {
       li.classList.add('nav__has-sub');
       var submenu = createUL("nav__sub-menu", el.items, false);
       li.appendChild(submenu);

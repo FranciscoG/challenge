@@ -32,7 +32,7 @@ At a high level the navigation will have two main states:
 * Clicking the hamburger will cause a card to push in and move the main content to the right. 
 * The card will contain nav and sub-nav items defined in the JSONP response.
 
-## \>= 768px: Desktop
+## >= 768px: Desktop
 *  The nav will display as a horizontal nav. 
 *  Top level nav items will display sub-nav items when clicked. No hamburger will be shown.
 
@@ -67,10 +67,13 @@ npm start
 
 * **Primary Navigation** 21/48 HUGE Avant Garde Bold
 * **Secondary Navigation** 16/48 Galaxie Copernicus Book
+
 * **Headline (Desktop)** 120/132 HUGE Avant Garde Bold
 * **Body Copy (Desktop)** 24/36 Galaxie Copernicus Book
+
 * **Headline (Mobile)** 44/48 HUGE Avant Garde Bold
 * **Body Copy (Mobile)** 14/24 Galaxie Copernicus Book
+
 * **Copyright (Mobile)** 12/16 Helvetica Neue Regular
 
 ### Color

@@ -1,29 +1,39 @@
 @import "fonts.css";
 
 :root {
-  --huge-magenta: #ec008c;
+  /* colors */
+  --magenta: #ec008c;
+  --light-gray: #eee;
+  --translucent-black: rgba(0, 0, 0, 0.5);
+
+  /* basic z-index management */
+  --z-nav : 4;
+  --z-nav-item : 3;
+  --z-overlay : 2;
+
+  /* font families */
+  --font-primary : "HUGEAvantGardeBold", "Helvetica Neue", sans-serif;
+  --font-secondary: "Galaxie", serif;
 }
 
 body {
-  background: var(--huge-magenta);
-  color: #fff;
   margin: 0;
+  line-height: 1.4;
+  font-family: var(--font-secondary);
+  font-size: 24px;
 }
 
-h1 {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  margin: 0;
-  font: 20vmin/1 HUGEAvantGardeBold;
-  letter-spacing: -0.06em;
-  text-align: center;
-}
+/******************************************************
+ * Nav Section
+ */
 
 nav {
   padding: 0;
+  display: flex;
+  flex-direction: row;
+  z-index: var(--z-nav);
+  position: relative;
+  background-color: var(--magenta);
 }
 
 nav ul {
@@ -37,55 +47,131 @@ nav ul {
   margin: 0;
   padding-top: 24px;
   padding-left: 24px;
-  float: left;
+  padding-right: 24px;
+  flex-shrink: 0;
 }
 .logo img {
   display: block;
   width: 100%;
 }
+
 .nav__menu {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-
-  float: left;
-  font-family: 'HUGEAvantGardeBold', sans-serif;
+  position: relative;
 }
 
 .nav__item {
   height: 100%;
   position: relative;
+  z-index: var(--z-nav-item);
 }
 
 .nav__link {
   color: #fff;
   text-decoration: none;
   display: block;
-  height: 100%;
   padding-left: 24px;
   padding-right: 24px;
   padding-top: 24px;
   padding-bottom: 24px;
   cursor: pointer;
-  font-size: 22px;
+}
+.nav__top-level {
+  font-family: var(--font-primary);
+  font-size: 21px;
 }
 
-.nav__link:hover {
-  color: var(--huge-magenta);
+.nav__link:hover,
+.active > .nav__link {
+  color: var(--magenta);
   background-color: #fff;
 }
 
 .nav__sub-menu {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 300ms linear;
+  background-color: #fff;
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  transition: all 300ms ease;
+  left: 0;
+  display: none;
+  min-width: 200px;
 }
 
-.nav__open.nav__sub-menu {
-  max-height: initial;
+.nav__sub-menu .nav__item {
+  clear: both;
+  width: 100%;
+  white-space: nowrap;
+}
+
+.active .nav__sub-menu {
+  visibility: visible;
+  opacity: 1;
+  display: block;
 }
 
 .nav__sub-menu .nav__link {
-  font-family: 'Galaxie', serif;
-  font-size: 0.95em;
+  font-family: var(--font-secondary);
+  font-size: 16px;
+  color: #000;
+}
+
+.nav__sub-menu .nav__link:hover {
+  color:  var(--magenta);
+  background-color: var(--light-gray);
+}
+
+
+
+/******************************************************
+ * Main content
+ */
+
+.section__hero {
+  position: relative;
+}
+
+.section__hero-image {
+  width: 100%;
+  display: block;
+}
+
+h1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  margin: 0;
+  font: 10vmin/1 HUGEAvantGardeBold;
+  letter-spacing: -0.06em;
+  text-align: center;
+  color: #fff;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: var(--z-overlay);
+  background-color: var(--translucent-black);
+  display: none;
+  opacity: 0;
+  transition: opacity 300ms linear;
+}
+.overlay__visible {
+  opacity: 1;
+  display: block;
+}
+/******************************************************
+ * Helper classes
+ */
+.cf:after {
+  clear: both;
+  content: "";
+  display: table;
 }
