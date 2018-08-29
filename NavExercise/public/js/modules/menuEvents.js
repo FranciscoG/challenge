@@ -14,15 +14,17 @@ function clearActive(current){
   }
 }
 
+/**
+ * 
+ * @param {DOMElement} target the .nav__link element currently targeted
+ */
 function handleNavLink(target){
   const li = target.parentElement;
-  const hasSub = li.classList.contains('nav__has-sub');
-
-  if (!hasSub) { return; }
+  if (!li.classList.contains('nav__has-sub')) { return; }
 
   const currentSub = li.querySelector('.nav__sub-menu');
 
-  // remove any currently open sub navs
+  // remove any currently open sub navs except itself
   clearActive(li);
   
   // toggle active class on the parent
@@ -63,6 +65,8 @@ function clickDelegator(e){
   clearActive();
   overlay.classList.remove('overlay__visible');
 }
+
+
 /**
  * Bind and begin menu events
  */

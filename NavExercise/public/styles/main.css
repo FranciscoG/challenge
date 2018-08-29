@@ -140,6 +140,8 @@ nav ul {
   font-family: var(--font-secondary);
   font-size: 0.67rem;
   color: #000;
+  padding-top: 16px;
+  padding-bottom: 16px;
 }
 
 .nav__sub-menu .nav__link:hover {
