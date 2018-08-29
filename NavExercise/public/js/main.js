@@ -7,7 +7,7 @@ import menuEvents from './modules/menuEvents.js';
 
 function init(json) {
   var menu = createMenuFromJson(json);
-  menuEvents(menu);
+  menuEvents();
   document.querySelector('nav').appendChild(menu);
 }
 
