@@ -69,9 +69,9 @@ npm start
 * **Secondary Navigation** 16/48 Galaxie Copernicus Book
 
 * **Headline (Desktop)** 120/132 HUGE Avant Garde Bold
-* **Body Copy (Desktop)** 24/36 Galaxie Copernicus Book
-
 * **Headline (Mobile)** 44/48 HUGE Avant Garde Bold
+
+* **Body Copy (Desktop)** 24/36 Galaxie Copernicus Book
 * **Body Copy (Mobile)** 14/24 Galaxie Copernicus Book
 
 * **Copyright (Mobile)** 12/16 Helvetica Neue Regular
