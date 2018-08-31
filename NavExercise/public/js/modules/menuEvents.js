@@ -1,10 +1,5 @@
-
 const overlay = document.querySelector('.overlay');
-const hamburger = document.querySelector('.hamburger');
 
-hamburger.addEventListener('click', function(e){
-  document.body.classList.toggle('nav-open');
-})
 /**
  * clears any open submenus when clicking on a new top level
  * item that has submenus of its own.  
@@ -55,24 +50,30 @@ function handleNavLink(target){
 }
 
 // key event delegation
-function keyEvents(e){
+function keyEvents({keyCode,preventDefault}){
   // ESC key
-  if (e.keyCode === 27) {
+  if (keyCode === 27) {
     reset();
   }
   
   // Spacebar (should work like Enter)
-  if (e.keyCode === 32 && document.activeElement.classList.contains('nav__link')) {
-    e.preventDefault();
+  if (keyCode === 32 && document.activeElement.classList.contains('nav__link')) {
+    preventDefault();
     handleNavLink(document.activeElement);
   }
 }
 
 // click delegation
-function clickDelegator(e){
-  if (e.target.classList.contains('nav__link')){
-    handleNavLink(e.target);
+function clickDelegator({target}){
+  // 
+  if (target.classList.contains('nav__link')){
+    handleNavLink(target);
     return;
+  }
+
+  // cheeseburger cheeseburger
+  if (target.classList.contains('hamburger')) {
+    document.body.classList.toggle('nav-open');
   }
 
   // if clicking on anything else, close the menu

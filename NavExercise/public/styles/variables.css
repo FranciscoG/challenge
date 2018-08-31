@@ -5,7 +5,7 @@
   --c-translucent-black: rgba(0, 0, 0, 0.5);
 
   /* basic z-index management */
-  --z-header : 3;
+  --z-top-bar : 3;
   --z-nav : 3;
   --z-nav-item : 2;
   --z-overlay : 1;
