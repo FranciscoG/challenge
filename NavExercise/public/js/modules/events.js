@@ -23,11 +23,9 @@ function reset() {
 
 /**
  * 
- * @param {HTMLElement} target the .nav__link element currently targeted
+ * @param {HTMLElement} target the .nav__item element currently targeted
  */
-function handleNavLink(target){
-  const li = target.parentElement;
-
+function handleNavLink(li){
   if (!li.classList.contains('nav__has-sub')) { 
     return reset();
   }
@@ -49,8 +47,17 @@ function handleNavLink(target){
   }
 }
 
-// key event delegation
+/***************************************************
+ *
+ */
 function keyEvents({keyCode,preventDefault}){
+  /*
+    remove "mouse-focus" from <html> for any keypress
+    This will allow the outline to show on tab-focusable elements which is
+    important for accessibility
+  */
+  document.querySelector('html').classList.remove("mouse-focus");
+
   // ESC key
   if (keyCode === 27) {
     reset();
@@ -63,10 +70,25 @@ function keyEvents({keyCode,preventDefault}){
   }
 }
 
-// click delegation
+function onMouseMove(e){
+  /*
+    on mouse move, put mouse-focus back in <html>
+    this will remove the outlines when a user can use a mouse
+   */
+  document.querySelector('html').classList.add("mouse-focus");
+}
+
+/***************************************************
+ * Handle all click related event callbacks here
+ */
 function clickDelegator({target}){
-  // 
+  
   if (target.classList.contains('nav__link')){
+    handleNavLink(target.parentElement);
+    return;
+  }
+
+  if (target.classList.contains('nav__top-level')){
     handleNavLink(target);
     return;
   }
@@ -74,6 +96,7 @@ function clickDelegator({target}){
   // cheeseburger cheeseburger
   if (target.classList.contains('hamburger')) {
     document.body.classList.toggle('nav-open');
+    return;
   }
 
   // if clicking on anything else, close the menu
@@ -81,11 +104,25 @@ function clickDelegator({target}){
   reset();
 }
 
+/************************************************************
+ * to prevent any glitchyness during window resize 
+ * due to css animations
+ */
+function onResize() {
+  var timeout;
+  clearTimeout(timeout);
+  document.body.classList.add('transitions-off');
+  timeout = setTimeout(function(){
+    document.body.classList.remove('transitions-off');
+  }, 100);
+}
 
-/**
+/************************************************************
  * Bind and begin menu events
  */
-export default function menuEvents(){
+export default function bindEvents(){
   document.addEventListener('keydown', keyEvents);
+  document.addEventListener('mousemove', onMouseMove);
   document.body.addEventListener('click', clickDelegator);
+  window.addEventListener('resize', onResize);
 }

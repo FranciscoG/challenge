@@ -15,7 +15,6 @@
 }
 
 .app-bar {
-  transform: translate3d(calc(-100vw + 72px), 0, 0);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -61,7 +60,7 @@
     display: none;
   }
   .app-bar {
-    transform: translate3d(0,0,0);
+    transform: none;
   }
 
   .logo {
@@ -72,7 +71,7 @@
   .hamburger {display: none;}
 
   .app-bar {
-    transform: translate3d(0,0,0);
+    transform: none;
   }
 
 }
@@ -80,6 +79,10 @@
 /******************************************************
  * handling transitions when mobile nav is open
  */
+
+ .transitions-off * {
+   transition: none !important;
+ }
 
 main {
   transition: 250ms;
@@ -91,9 +94,13 @@ main {
   transform: translate3d(0,0,0);
 }
 .nav-open main {
-  transform: translate3d(231px,0,0);
+  transform: translate3d(300px,0,0);
   overflow: hidden;
   height: 100%;
+}
+
+.app-bar {
+  transform: translate3d(calc(-100vw + 72px), 0, 0); 
 }
 .nav-open .app-bar {
   transform: translate3d(0,0,0);
@@ -117,9 +124,10 @@ nav {
   z-index: var(--z-nav);
   
   height: 100%;
-  width: 231px;
+  /* min-height: 100vh; */
+  width: 300px;
   
-  transform: translate3d(-231px,0,0);
+  transform: translate3d(-300px,0,0);
   transition: 250ms;
   
   overflow-x: hidden;
@@ -131,6 +139,11 @@ nav {
 }
 nav .logo {
   display: none;
+}
+.copyright {
+  font-size: 12px;
+  padding-left: 24px;
+  order: 1;
 }
 @media screen and (min-width: 768px) {
   nav {
@@ -145,6 +158,9 @@ nav .logo {
   }
   nav .logo {
     display: block;
+  }
+  .copyright {
+    display: none;
   }
 }
 
@@ -192,6 +208,7 @@ nav .logo {
  .nav__top-level {
   font-family: var(--font-primary);
   font-size: 16px;
+  overflow: hidden;
 }
 
 .nav__link:hover,
@@ -210,6 +227,7 @@ nav .logo {
   .nav__top-level {
     font-size: 0.875rem;
     position: relative;
+    overflow: initial;
   }
 
   .nav__link {

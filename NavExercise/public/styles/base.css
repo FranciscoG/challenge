@@ -31,6 +31,18 @@ body {
   overflow-x: hidden;
 }
 
+/*
+  remove the outline from focusable elements when a user can use a mouse
+*/
+.mouse-focus a:focus,
+.mouse-focus input:focus,
+.mouse-focus select:focus,
+.mouse-focus button:not([disabled]):focus,
+.mouse-focus iframe:focus,
+.mouse-focus [tabindex]:focus {
+  outline: none;
+}
+
 /* reset all ULs */
 ul {
   list-style: none;

@@ -3,12 +3,12 @@
 // https://developers.google.com/web/fundamentals/primers/modules
 
 import HugeNav from './modules/HugeNav.js';
-import menuEvents from './modules/menuEvents.js';
+import bindEvents from './modules/events.js';
 
 function init(json) {
   var nav = new HugeNav(json.items);
   document.querySelector('nav').appendChild(nav.menu);
-  menuEvents();
+  bindEvents();
 }
 
 fetch('/api/nav.json')
