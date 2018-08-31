@@ -2,13 +2,13 @@
 // What a time to be alive!
 // https://developers.google.com/web/fundamentals/primers/modules
 
-import createMenuFromJson from './modules/createMenu.js';
+import HugeNav from './modules/HugeNav.js';
 import menuEvents from './modules/menuEvents.js';
 
 function init(json) {
-  var menu = createMenuFromJson(json);
+  var nav = new HugeNav(json.items);
+  document.querySelector('nav').appendChild(nav.menu);
   menuEvents();
-  document.querySelector('nav').appendChild(menu);
 }
 
 fetch('/api/nav.json')

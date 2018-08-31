@@ -1,0 +1,17 @@
+:root {
+  /* colors */
+  --c-magenta: #ec008c;
+  --c-light-gray: #eee;
+  --c-translucent-black: rgba(0, 0, 0, 0.5);
+
+  /* basic z-index management */
+  --z-header : 3;
+  --z-nav : 3;
+  --z-nav-item : 2;
+  --z-overlay : 1;
+
+  /* font families */
+  --font-primary : "HUGEAvantGardeBold", "Helvetica Neue", sans-serif;
+  --font-secondary: "Galaxie", serif;
+
+}

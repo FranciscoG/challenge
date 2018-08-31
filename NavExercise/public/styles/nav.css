@@ -1,0 +1,310 @@
+/********************************************
+ * NAV styles
+ */
+
+/******************************************************
+ * Header  - mobile
+ */
+ 
+header {
+  display: block;
+  width: 100%;
+  background-color: var(--c-magenta);
+  position: relative;
+  z-index: var(--z-header);
+}
+
+.app-bar {
+  transform: translate3d(calc(-100vw + 72px), 0, 0);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  transition: transform 250ms linear;
+}
+
+.logo {
+  width: 98px;
+  margin: 0;
+  padding: 20px 24px;
+}
+.logo img {
+  display: block;
+  width: 100%;
+}
+
+.hamburger {
+  appearance: none;
+  --webkit-appearance: none;
+  border: none;
+  background: none;
+  width: 72px;
+  display: block;
+  padding: 0;
+  background-image: url('/images/toggle-open.svg');
+  background-repeat: no-repeat;
+  background-position-y: -6px; /* because the SVG is set to a height of 72px but the spec calls for 60px*/
+  background-size: 100%;
+  height: 60px;
+  transition: 250ms;
+  cursor: pointer;
+}
+.nav-open .hamburger {
+  background-image: url('/images/toggle-close.svg');
+}
+
+/******************************************************
+ * Header  - desktop
+ */
+
+@media screen and (min-width: 768px) {
+  header {
+    
+  }
+  .app-bar {
+    transform: translate3d(0,0,0);
+  }
+
+  .logo {
+    width: 108px;
+    padding: 24px;
+  }
+
+  .hamburger {display: none;}
+
+  .app-bar {
+    transform: translate3d(0,0,0);
+  }
+
+}
+
+/******************************************************
+ * handling transitions when mobile nav is open
+ */
+
+main {
+  transition: 250ms;
+}
+.nav-open {
+  overflow: hidden;
+}
+.nav-open nav {
+  transform: translate3d(0,0,0);
+}
+.nav-open main {
+  transform: translate3d(231px,0,0);
+  overflow: hidden;
+  height: 100%;
+}
+.nav-open .app-bar {
+  transform: translate3d(0,0,0);
+}
+
+@media screen and (min-width: 768px) {
+  .nav-open main {
+    transform: translate3d(0,0,0);
+  }
+}
+
+
+/******************************************************
+ * Nav container
+ */
+
+nav {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  z-index: var(--z-nav);
+  
+  height: 100%;
+  width: 231px;
+  
+  transform: translate3d(-231px,0,0);
+  transition: 250ms;
+  
+  overflow-x: hidden;
+  padding: 0;
+  
+  display: flex;
+  flex-direction: column;
+  
+}
+@media screen and (min-width: 768px) {
+  nav {
+    flex-direction: row;
+    transform: translate3d(0,0,0);
+    top: 0;
+    left: 108px;
+    width: 100%;
+    height: auto;
+  }
+}
+
+/******************************************************
+ * Menu UL
+ */
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav__menu {
+  position: relative;
+}
+
+.nav__item {
+  height: 100%;
+  position: relative;
+  z-index: var(--z-nav-item);
+}
+
+.nav__has-sub:after {
+  content: "";  
+  background-image: url('/images/arrow-down.svg');
+  background-size: cover;
+  display: block;
+  width: 48px;
+  height: 48px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+.active.nav__has-sub:after {
+  background-image: url('/images/arrow-up.svg');
+}
+
+.nav__link {
+  color: #000;
+  text-decoration: none;
+  display: block;
+  padding-left: 24px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  cursor: pointer;
+}
+
+ .nav__top-level {
+  font-family: var(--font-primary);
+  font-size: 16px;
+}
+
+.no-js .nav__link:hover,
+.active > .nav__link {
+  color: var(--c-magenta);
+  background-color: #fff;
+}
+
+@media screen and (min-width: 768px) { 
+  .nav__menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .nav__top-level {
+    font-size: 0.875rem;
+    max-height: 72px;
+  }
+
+  .nav__link {
+    color: #fff;
+    padding-left: 2.4vw;
+    padding-right: 2.4vw;
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+  .nav__has-sub:after { 
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .nav__link {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+/*****************************************
+ * subnav section 
+ */
+
+.nav__sub-menu {
+  background-color: #fff;
+  max-height: 0;
+  transition: max-height 0.3s cubic-bezier(0,1,0,1);
+  overflow: hidden;
+}
+
+.nav__sub-menu .nav__item {
+  clear: both;
+  width: 100%;
+  white-space: nowrap;
+}
+
+.active .nav__sub-menu {
+  max-height: 9999px;
+  transition: max-height 0.3s cubic-bezier(1,0,1,0);
+}
+
+.nav__sub-menu .nav__link {
+  font-family: var(--font-secondary);
+  font-size: 16px;
+  color: #000;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.nav__sub-menu .nav__link:hover {
+  color:  var(--c-magenta);
+  background-color: var(---c-light-gray);
+}
+
+@media screen and (min-width: 768px) {
+  .nav__sub-menu {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    display: none;
+    min-width: 200px;
+  }
+
+  .active .nav__sub-menu {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+  }
+
+  .nav__sub-menu .nav__link {
+    font-size: 0.67rem;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+}
+
+/********************************************
+ * overlay is part of the nav functionailty
+ */
+ 
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  z-index: var(--z-overlay);
+  background-color: var(--c-translucent-black);
+  display: none;
+  opacity: 0;
+  transition: opacity 300ms linear;
+}
+
+.nav-open .overlay,
+.overlay__visible {
+  display: block;
+  opacity: 1;
+}
