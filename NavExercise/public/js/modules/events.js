@@ -26,7 +26,8 @@ function reset() {
  * @param {HTMLElement} target the .nav__item element currently targeted
  */
 function handleNavLink(li){
-  if (!li.classList.contains('nav__has-sub')) { 
+  if (!li.classList.contains('nav__has-sub')) {
+    location.href="page.html?"+li.textContent;
     return reset();
   }
 
@@ -81,20 +82,26 @@ function onMouseMove(e){
 /***************************************************
  * Handle all click related event callbacks here
  */
-function clickDelegator({target}){
+function clickDelegator(e){
+  console.log(e.target);
+  e.preventDefault();
+
+  if (e.target.alt === "HUGE" || e.target.classList.contains('logo')) {
+    location.href="/";
+  }
   
-  if (target.classList.contains('nav__link')){
-    handleNavLink(target.parentElement);
+  if (e.target.classList.contains('nav__link')){
+    handleNavLink(e.target.parentElement);
     return;
   }
 
-  if (target.classList.contains('nav__top-level')){
-    handleNavLink(target);
+  if (e.target.classList.contains('nav__top-level')){
+    handleNavLink(e.target);
     return;
   }
 
   // cheeseburger cheeseburger
-  if (target.classList.contains('hamburger')) {
+  if (e.target.classList.contains('hamburger')) {
     document.body.classList.toggle('nav-open');
     return;
   }

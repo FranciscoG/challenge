@@ -25,6 +25,7 @@
   width: 98px;
   margin: 0;
   padding: 20px 24px;
+  cursor: pointer;
 }
 .logo img {
   display: block;
