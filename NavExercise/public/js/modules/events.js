@@ -18,7 +18,8 @@ function clearActive(current){
  */
 function reset() {
   clearActive();
-  overlay.classList.remove('overlay__visible');;
+  overlay.classList.remove('overlay__visible');
+  document.body.classList.remove('nav-open');
 }
 
 /**
